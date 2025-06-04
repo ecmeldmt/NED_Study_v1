@@ -1,21 +1,17 @@
-# 🔧 İçindekiler
+# 📝 Ingredients
 
 - [Installation](#Installation)
 - [Dataset](#dataset)
-- [Train](#train)
-
 
 # Installation
 - 
 
 ```bash
-# 
+# install necessary libraries 
 pip install ftfy regex tqdm
 
-# Install CLIP library
 pip install git+https://github.com/openai/CLIP.git
 
-# Install torch 
 pip install torchvision
 
 ```
