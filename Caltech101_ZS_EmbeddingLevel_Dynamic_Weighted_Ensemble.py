@@ -73,9 +73,13 @@ for images, labels in tqdm(loader, total=500):
     # Ensemble image embedding
     ensemble_image = F.normalize(alpha * image1 + (1 - alpha) * image2, dim=-1)
 
-    # Ensemble text embedding (sabit)
-    ensemble_text = F.normalize((text_features1 + text_features2) / 2, dim=-1)
+    # Ensemble text embedding
+    conf_t1 = sim1.max().item()
+    conf_t2 = sim2.max().item()
+    beta = conf_t1 / (conf_t1 + conf_t2)
 
+    ensemble_text = F.normalize(beta * text_features1 + (1 - beta) * text_features2, dim=-1)
+    
     # Skorlar
     logits = ensemble_image @ ensemble_text.T
     pred = logits.argmax(dim=-1).item()
